@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 
 export default defineConfig({
-  site: 'https://zayez.github.io/zayez-site',
+  site: 'https://zayez.github.io',
 
   integrations: [mdx()],
   base: './',
