@@ -1,0 +1,12 @@
+---
+import Article from "../components/article.astro";
+import Main from './main-layout.astro';
+const {
+  frontmatter: { title,  pubDate, image, author },
+} = Astro.props;
+---
+<Main title="Zayez's blog" description="Blog">
+  <Article title={title} author={author} image={image} pubDate={pubDate}>
+    <slot />
+  </Article>
+</Main>

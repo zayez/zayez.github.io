@@ -1,0 +1,40 @@
+---
+import { getLightness } from "../../utils/color-utils"
+
+const colors = ['blue', 'red', 'yellow', 'gray']
+const lightnesses = [...Array(11).keys()]
+const baseColors = [...Array(10).keys()]
+---
+<div class="system-colors">
+  <h3>Colors</h3>
+
+  <div class="root">
+    {colors.map((color) => (
+      <div>
+        <h4>{color}</h4>
+        <ul class='boxes'>
+        {lightnesses.map((_, i) => (
+          <li class={`box-${color}-${getLightness(lightnesses, i)}`}><span>{`${color} ${getLightness(lightnesses, i)}`}</span></li>
+        ))}
+        </ul>
+      </div>
+    ))}
+
+    <div>
+      <h4>black & white</h4>
+      <ul class="boxes">
+        {baseColors.map((_, i) => (
+          <li class={`box-${i % 2 === 0 ? 'white' : 'black'}`}><span>{i % 2 === 0 ? 'white' : 'black'}</span></li>
+        ))}
+    </div>
+
+    <div>
+      <h4>Red with custom saturation</h4>
+      <ul class='boxes boxes-saturation'>
+        {lightnesses.map((_, i) => (
+          <li class={`box-${'red'}-${getLightness(lightnesses, i)}-20`}><span>{`${`red`} ${getLightness(lightnesses, i)}`}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>

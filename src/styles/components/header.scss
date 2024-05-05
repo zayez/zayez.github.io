@@ -1,0 +1,59 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  flex-flow: column;
+
+  @include mq($from: desktop) {
+    flex-flow: row;
+  }
+  & > h1 {
+    margin: 0;
+  }
+
+  & > nav {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+
+    @include mq($from: desktop) {
+      margin-right: -1em;
+      flex-flow: row;
+      width: auto;
+    }
+  }
+
+  & > nav > a {
+    text-decoration: none;
+    color: $white-color;
+    // border: 1px solid red;
+    padding: 1em;
+    width: 100%;
+    text-align: center;
+
+    @include mq($from: desktop) {
+      width: auto;
+    }
+
+    &:hover {
+      text-decoration: overline;
+    }
+  }
+
+  & h1 > a {
+    text-decoration: none;
+    color: white;
+    padding: 1em;
+
+    @include mq($from: desktop) {
+      margin: -1em;
+    }
+
+    &:hover {
+      text-decoration: overline;
+    }
+  }
+}

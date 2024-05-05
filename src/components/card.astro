@@ -1,0 +1,11 @@
+---
+const {url, image, title, footer, } = Astro.props
+---
+
+<div class="blog-card-list-item">
+  <h2>{title}</h2>
+  <p><a href={url}><img src={image} /></a></p>
+  <slot />
+  <p>{footer}</p>
+</div>
+

@@ -1,0 +1,64 @@
+.root {
+  display: flex;
+  flex-flow: column;
+  gap: 5em;
+}
+
+.boxes {
+  display: flex;
+  gap: 0.5em;
+  flex-flow: column;
+  margin: 0;
+  padding: 0;
+
+  & > * {
+    height: 150px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    @include mq($from: desktop) {
+      flex: 1;
+    }
+  }
+
+  @include mq($from: desktop) {
+    flex-flow: row;
+  }
+}
+
+.boxes-saturation {
+  & > * {
+    height: 50px;
+  }
+}
+
+@each $colour in $colors {
+  @each $lightness in $lightnesses {
+    .box-#{'' + $colour}-#{$lightness} {
+      background-color: palette($colour, $lightness);
+    }
+    @each $saturation in $saturations {
+      .box-#{'' + $colour}-#{$lightness}-#{$saturation} {
+        background-color: palette($colour, $lightness, $saturation);
+      }
+    }
+  }
+}
+
+.box-black {
+  background-color: $black-color;
+  color: $white-color;
+}
+
+.box-white {
+  background-color: $white-color;
+  color: $black-color;
+}
+
+.box-sat-1 {
+  background: palette(red, 50, 0.1);
+  border: 1px solid red;
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "sideralis",
+    "imageUrl": "https://i.postimg.cc/9WJDff19/sideralis-screencap.png",
+    "githubUrl": "https://github.com/zayez/sideralis",
+    "projectUrl": "https://sideralis.vercel.app",
+    "description": "APOD reimagined. Each day a different image or photograph of our universe is featured, along with a brief explanation written by a professional astronomer."
+  },
+  {
+    "name": "galigens",
+    "imageUrl": "https://i.postimg.cc/npJp6JGf/galigens-screencap.png",
+    "githubUrl": "https://github.com/zayez/galigens",
+    "projectUrl": "https://zayez.github.io/galigens",
+    "description": "A webapp to explore the Martian surface using real-life photos from Mars — captured by NASA's rovers operating on the red planet."
+  },
+  {
+    "name": "storefly",
+    "imageUrl": "https://i.postimg.cc/NQGwTsXX/storefly-screencap.png",
+    "githubUrl": "https://github.com/zayez/storefly",
+    "projectUrl": "https://github.com/zayez/storefly",
+    "description": "A semi-complete e-commerce solution for Node.js."
+  }
+]

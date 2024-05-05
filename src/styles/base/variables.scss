@@ -1,0 +1,49 @@
+// Breakponts
+$mq-breakpoints: (
+  mobile: 320px,
+  tablet: 740px,
+  desktop: 980px,
+  wide: 1300px,
+);
+
+$main-container-width: 80em;
+
+$color-base-grey: hsl(229, 0%, 55%);
+$color-base-white: hsl(342, 70%, 100%);
+$color-base-black: hsl(0, 0%, 19%);
+$color-base-red: hsl(325, 100%, 45%);
+$color-base-blue: hsl(222, 100%, 45%);
+
+:root {
+  --red-hue: 325;
+  --blue-hue: 219;
+  --yellow-hue: 40;
+  --gray-hue: var(--blue-hue);
+}
+
+// Color palette
+$black-color: hsl(var(--blue-hue), 20%, 10%);
+$white-color: hsl(var(--blue-hue), 20%, 99%);
+
+$colors: red, blue, yellow, gray;
+$lightnesses: 10, 20, 30, 40, 45, 50, 55, 60, 70, 80, 90, 95;
+$saturations: 10, 20, 30, 40, 50, 60, 70, 80, 90;
+
+$palettes: (
+  red: (
+    hue: var(--red-hue),
+    saturation: 1,
+  ),
+  blue: (
+    hue: var(--blue-hue),
+    saturation: 0.5,
+  ),
+  yellow: (
+    hue: var(--yellow-hue),
+    saturation: 1,
+  ),
+  gray: (
+    hue: var(--gray-hue),
+    saturation: 0.1,
+  ),
+);

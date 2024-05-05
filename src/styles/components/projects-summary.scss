@@ -1,0 +1,63 @@
+.projects-summary {
+  h2 {
+    color: palette(blue, 20);
+    // color: palette(red, 40, 77);
+  }
+}
+
+.projects-summary-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 2em;
+  flex-flow: column;
+
+  & li:nth-child(even) > .project-summary-screen {
+    order: 2;
+  }
+}
+
+.project-summary-item {
+  border: 1px solid palette(gray, 50);
+  padding: 1em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+
+  @include mq($from: desktop) {
+    flex-flow: row;
+    gap: 2em;
+  }
+
+  & > * {
+    flex: 1;
+  }
+}
+
+.project-summary-screen {
+  & figure {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.project-summary-details {
+  padding: 1em;
+
+  & h4 {
+    margin: 0;
+    padding: 0;
+  }
+
+  & a {
+    text-decoration: none;
+    color: $white-color;
+    color: palette(blue, 20);
+    color: palette(red, 40, 77);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

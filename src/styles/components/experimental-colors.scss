@@ -1,0 +1,18 @@
+.saturation-list {
+  display: flex;
+  gap: 5em;
+
+  & > * {
+    flex: 1;
+  }
+}
+
+.lightness-list {
+  display: flex;
+  gap: 1em;
+  flex-flow: column;
+
+  & > * {
+    flex: 1;
+  }
+}

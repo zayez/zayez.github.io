@@ -1,0 +1,39 @@
+@import '../base/base.scss';
+@import '../components/system-colors.scss';
+@import '../components/footer.scss';
+@import '../components/header.scss';
+@import '../components/about.scss';
+@import '../components/projects-summary.scss';
+@import './blog.scss';
+
+body {
+  margin: 1em;
+  background-color: palette(blue, 90);
+  color: $white-color;
+  font-family: 'Lora', serif;
+  font-optical-sizing: auto;
+  font-size: 1.5em;
+}
+
+.main-container {
+  max-width: $main-container-width;
+  margin: 0 auto;
+}
+
+.index-container {
+  display: flex;
+  gap: 2em;
+  flex-flow: column;
+
+  & > * {
+    width: 100%;
+  }
+}
+
+hr {
+  border: 2px solid palette(gray, 60);
+}
+
+img {
+  max-width: 100%;
+}

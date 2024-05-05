@@ -1,0 +1,24 @@
+---
+import projects from '../../data/projects.json'
+---
+
+<div class="projects-summary">
+  <h2>Projects</h2>
+  <p>Below is a sample of projects that I've created.</p>
+
+  <ul class="projects-summary-list">
+    {projects.map((project) => (
+      <li class="project-summary-item">
+        <div class="project-summary-screen">
+          <figure>
+            <a aria-label={project.description} href={project.imageUrl}><img alt={project.description} src={project.imageUrl} /></a>
+          </figure>
+        </div>
+        <div class="project-summary-details">
+          <h4><a aria-label={project.description} href={project.projectUrl}>{project.name}</h4></a>
+          <p>{project.description}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
