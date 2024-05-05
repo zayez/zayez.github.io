@@ -6,9 +6,9 @@ export default defineConfig({
   site: 'https://zayez.github.io',
 
   integrations: [mdx()],
-  base: './',
+  base: '/',
   build: {
-    assetsPrefix: './',
+    assetsPrefix: '/',
     format: 'file',
   },
 
