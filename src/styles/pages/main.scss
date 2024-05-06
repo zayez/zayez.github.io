@@ -7,12 +7,16 @@
 @import './blog.scss';
 
 body {
-  margin: 1em;
   background-color: palette(blue, 90);
   color: $white-color;
   font-family: 'Lora', serif;
   font-optical-sizing: auto;
-  font-size: 1.5em;
+  font-size: 1em;
+  padding: 1em;
+
+  @include mq($from: desktop) {
+    font-size: 1.3em;
+  }
 }
 
 .main-container {
