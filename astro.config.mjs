@@ -11,11 +11,4 @@ export default defineConfig({
     assetsPrefix: '/',
     format: 'file',
   },
-
-  // output: 'static',
-  // outDir: './dist',
-  // build: {
-  //   assets: 'astro',
-  // },
-  // base: './dist',
 })
