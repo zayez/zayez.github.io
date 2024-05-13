@@ -1,7 +1,6 @@
 .projects-summary {
   h2 {
-    color: palette(blue, 20);
-    // color: palette(red, 40, 77);
+    color: palette(blue, 1);
   }
 }
 
@@ -18,7 +17,7 @@
 }
 
 .project-summary-item {
-  border: 1px solid palette(gray, 50);
+  border: 1px solid palette(gray, 10);
   padding: 1em;
   border-radius: 5px;
   display: flex;
@@ -52,12 +51,10 @@
 
   & a {
     text-decoration: none;
-    color: $white-color;
-    color: palette(blue, 20);
-    color: palette(red, 40, 77);
+    color: palette(red, 50);
 
     &:hover {
-      text-decoration: underline;
+      color: $white-color;
     }
   }
 }

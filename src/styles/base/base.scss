@@ -3,3 +3,111 @@
 @import './variables.scss';
 @import 'sass-mq';
 @import './mixins.scss';
+@import './typography.scss';
+
+html {
+  font-size: #{$base-font-size + '%'};
+
+  @include mq($from: desktop) {
+    font-size: #{$base-font-size * 1.125 + '%'};
+  }
+}
+
+body {
+  margin: 0;
+  background-color: palette(blue, 90);
+  color: $white-color;
+  font-family: 'Lora', serif;
+  font-optical-sizing: auto;
+
+  padding: 0em 2em;
+  font-size: calc(12px + 1vw); /* Responsive base font size */
+}
+
+hr {
+  border: 2px solid palette(gray, 10);
+}
+
+pre {
+  padding: 1.5em 1.5em;
+  border-radius: 5px;
+  background: palette(blue, 88, 35) !important;
+  font-size: ms(0);
+}
+
+p code {
+  background: palette(blue, 80, 52);
+  padding: 0.15rem 0.25rem;
+  border-radius: 5px;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  padding: 0.25em 0.2em;
+  color: palette(red, 50);
+
+  &:hover {
+    background: palette(red, 70);
+    color: white;
+  }
+
+  &:hover > img {
+    background: none;
+    text-decoration: none;
+  }
+
+  &:hover + img {
+    background: none;
+  }
+
+  &:has(img) {
+    border: 1px solid transparent;
+    display: flex;
+
+    &:hover {
+      border: 1px solid palette(red, 50);
+      background: none;
+    }
+  }
+}
+
+ul {
+  display: flex;
+  flex-flow: column;
+  margin: 0;
+  margin-left: 1em;
+  padding: 0;
+  gap: 1em;
+}
+
+$headings: (
+  h1: (
+    3,
+    3,
+    2,
+    1,
+  ),
+);
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1,
+h2 {
+  color: palette(red, 1);
+}
+
+h1 a,
+h2 a {
+  padding: 0;
+}

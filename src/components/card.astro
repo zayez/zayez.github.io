@@ -1,11 +1,14 @@
 ---
-const {url, image, title, footer, } = Astro.props
+const {url, image, title, date  } = Astro.props
 ---
 
-<div class="blog-card-list-item">
-  <h2>{title}</h2>
-  <p><a href={url}><img src={image} /></a></p>
+<div class="blog-card-list">
+  <h1>Posts</h1>
+  <h2><a href={url}>{title}</a></h2>
+  {image && (<p><a href={url}><img src={image} /></a></p>)}
   <slot />
-  <p>{footer}</p>
+  <p>
+  <small>{date}</small>
+  </p>
 </div>
 
