@@ -1,5 +1,3 @@
-// @import 'normalize-scss';
-// @include normalize();
 @import './variables.scss';
 @import 'sass-mq';
 @import './mixins.scss';
@@ -17,7 +15,7 @@ body {
   margin: 0;
   background-color: palette(blue, 90);
   color: $white-color;
-  font-family: 'Lora', serif;
+  font-family: $font-family-body;
   font-optical-sizing: auto;
 
   padding: 0em 2em;
@@ -99,7 +97,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Playfair Display', serif;
+  font-family: $font-family-heading;
 }
 
 h1 a,

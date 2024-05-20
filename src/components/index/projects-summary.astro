@@ -1,5 +1,6 @@
 ---
-import projects from '../../data/projects.json'
+import {getCollection} from 'astro:content'
+const projects = await getCollection('projects')
 ---
 
 <div class="projects-summary">
@@ -10,13 +11,16 @@ import projects from '../../data/projects.json'
     {projects.map((project) => (
       <li class="project-summary-item">
         <div class="project-summary-screen">
-          <figure>
-            <a aria-label={project.description} href={project.imageUrl}><img alt={project.description} src={project.imageUrl} /></a>
-          </figure>
+            <a aria-label={project.data.description} href={project.data.imageUrl}>
+              <picture>
+                <source srcset={`${project.data.images.large} 1400w, ${project.data.images.big} 1024w, ${project.data.images.medium} 640w, ${project.data.images.small} 320w"`} type="image/avif" />
+                <img src={`${project.data.images.large}`} alt={project.data.description} />
+              </picture>
+            </a>
         </div>
         <div class="project-summary-details">
-          <h4><a aria-label={project.description} href={project.projectUrl}>{project.name}</h4></a>
-          <p>{project.description}</p>
+          <h3><a aria-label={project.data.description} href={project.data.projectUrl}>{project.data.name}</h3></a>
+          <p>{project.data.description}</p>
         </div>
       </li>
     ))}

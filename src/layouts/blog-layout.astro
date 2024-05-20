@@ -7,17 +7,14 @@ import '../styles/pages/main.scss';
 ---
 <!DOCTYPE html>
 <html lang="en">
-  <BaseHead
-    title={title}
-    description={description}
-  />
+  <BaseHead title={title} description={description} />
   <body>
     <main class="main-container">
-        <Header />
+      <Header />
       <div class="blog-container">
         <slot />
       </div>
-        <Footer />
+      <Footer />
     </main>
   </body>
 </html>

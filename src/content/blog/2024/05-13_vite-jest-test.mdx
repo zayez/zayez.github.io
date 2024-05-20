@@ -1,11 +1,12 @@
 ---
-layout: ../../layouts/post-layout.astro
 title: 'Setup testing with Jest in your Vite-React-TypeScript project'
 description: 'How to setup testing with Jest in your Vite project.'
 author: 'Enio E. Zanatta'
 pubDate: '13 May, 2024'
 slug: '2024-05-13_vite-jest-test'
 ---
+
+# {frontmatter.title}
 
 If you are trying to use `Jest` in your `Vite-React-TypeScript app` for the very first time it could get a little bit tricky. Luckly with the help
 of [some](https://dev.to/hannahadora/jest-testing-with-vite-and-react-typescript-4bap) people on the [web](https://zaferayan.medium.com/how-to-setup-jest-and-react-testing-library-in-vite-project-2600f2d04bdd)
@@ -19,13 +20,13 @@ There's a couple of packages that will be needed for `Jest` to work properly.
 
 For `TypeScript` support add these packages:
 
-```bash
+```bash title="terminal"
 npm i -D ts-jest @types/jest ts-node
 ```
 
 For `Jest` & `Testing Library`, add these packages:
 
-```bash
+```bash title="terminal"
 npm i -D jest @testing-library/react @testing-library/user-event @testing-library/jest-dom jest-environment-jsdom
 npm i -D identity-obj-proxy jest-svg-transformer
 ```
@@ -34,7 +35,7 @@ npm i -D identity-obj-proxy jest-svg-transformer
 
 We'll need to configure `Jest`. Add a `jest.config.ts` file with the following content:
 
-```ts
+```ts title="jest.config.ts"
 export default {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
@@ -50,7 +51,7 @@ export default {
 
 To conclude, inside your `package.json` add a `test` script calling `jest`.
 
-```json
+```json title="package.json"
 {
   "test": "jest"
 }
@@ -60,7 +61,7 @@ To conclude, inside your `package.json` add a `test` script calling `jest`.
 
 Add a test file with `test.tsx` as extension.
 
-```js
+```js title="tests/a-simple-test.tsx"
 test('a simple test', () => {
   expect(1).toBe(1)
 })

@@ -51,11 +51,10 @@ $palettes: (
 
 // Core Variables - Large Screens
 $base-font-size: 112.5 !default; // 18px in % of 16px
-$line-height: 1.6 !default;
-$font-family: 'Georgia', serif !default;
-$heading-font-family: $font-family !default;
-$heading-font-weight: 700 !default;
 $ratio: 1.5 !default;
+$line-height: 1.6 !default;
+$font-family-body: 'Lora', serif !default;
+$font-family-heading: 'Playfair Display', serif !default;
 
 // Core Variables - Mobile Screens
 $mobile-base-font-size: 100 !default;

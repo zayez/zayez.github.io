@@ -1,0 +1,30 @@
+---
+import BlogLayout from "../../layouts/blog-layout.astro";
+import Card from '../../components/card.astro'
+import {getCollection} from 'astro:content'
+
+const blog = await getCollection('blog')
+---
+<BlogLayout title="Zayez's Blog">
+  <section class="">
+    <div class="blog-container">
+      <h1>Posts</h1>
+      <ul class="blog-posts-list">
+        {
+          blog.map((post) => (
+            <li>
+              <Card
+                url={`/blog/${post.slug}`}
+                image={post.data.image}
+                title={post.data.title}
+                date={post.data.pubDate}
+              >
+                {post.data.description}
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BlogLayout>

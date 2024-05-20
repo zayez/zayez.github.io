@@ -3,7 +3,6 @@ const {url, image, title, date  } = Astro.props
 ---
 
 <div class="blog-card-list">
-  <h1>Posts</h1>
   <h2><a href={url}>{title}</a></h2>
   {image && (<p><a href={url}><img src={image} /></a></p>)}
   <slot />
