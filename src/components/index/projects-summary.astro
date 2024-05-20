@@ -13,8 +13,8 @@ const projects = await getCollection('projects')
         <div class="project-summary-screen">
             <a aria-label={project.data.description} href={project.data.imageUrl}>
               <picture>
-                <source srcset={`${project.data.images.large} 1400w, ${project.data.images.big} 1024w, ${project.data.images.medium} 640w, ${project.data.images.small} 320w"`} type="image/avif" />
-                <img src={`${project.data.images.large}`} alt={project.data.description} />
+                <source srcset={`${project.data.images.large.toString()} 1400w, ${project.data.images.big.toString()} 1024w, ${project.data.images.medium.toString()} 640w, ${project.data.images.small.toString()} 320w`} type="image/avif" />
+                <img src={`${project.data.images.large.toString()}`} alt={project.data.description} />
               </picture>
             </a>
         </div>
