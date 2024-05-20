@@ -11,7 +11,7 @@ const projects = await getCollection('projects')
     {projects.map((project) => (
       <li class="project-summary-item">
         <div class="project-summary-screen">
-            <a aria-label={project.data.description} href={project.data.imageUrl}>
+            <a aria-label={project.data.description} href={project.data.images.large}>
               <picture>
                 <source srcset={`${project.data.images.large.toString()} 1400w, ${project.data.images.big.toString()} 1024w, ${project.data.images.medium.toString()} 640w, ${project.data.images.small.toString()} 320w`} type="image/avif" />
                 <img src={`${project.data.images.large.toString()}`} alt={project.data.description} />
