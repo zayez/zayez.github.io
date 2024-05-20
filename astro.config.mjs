@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import expressiveCode from 'astro-expressive-code'
+import { shield } from '@kindspells/astro-shield'
 
 export default defineConfig({
   site: 'https://zayez.xyz',
@@ -15,6 +16,7 @@ export default defineConfig({
     }),
     mdx(),
     react(),
+    shield({}),
   ],
   base: '/',
   build: {
