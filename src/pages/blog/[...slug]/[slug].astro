@@ -14,12 +14,13 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content,  } = await entry.render();
+const year = entry.slug?.split('-')[0]
 ---
 
 <BlogLayout
   frontmatter={{
     ...entry,
-    url: `/blog/${entry.slug}`,
+    url: `/blog/${year}/${entry.slug}`,
     title: entry.data.title,
   }}
 >
