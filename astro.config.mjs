@@ -6,6 +6,11 @@ import { shield } from '@kindspells/astro-shield'
 
 export default defineConfig({
   site: 'https://zayez.xyz',
+  vite: {
+    css: {
+      devSourcemap: true,
+    },
+  },
   integrations: [
     expressiveCode({
       themes: ['dracula'],
