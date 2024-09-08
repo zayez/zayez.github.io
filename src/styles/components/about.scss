@@ -11,10 +11,6 @@
   flex-flow: column;
   gap: 2em;
   align-items: flex-start;
-
-  @include mq($from: desktop) {
-    margin-top: 3em;
-  }
 }
 
 .about-title {
@@ -34,8 +30,9 @@
     font-size: clamp(ms(1), 4vw + 1rem, ms(3));
     color: palette(gray, 50);
     font-style: italic;
-    // text-transform: lowercase;
     font-weight: lighter;
+    margin: 0;
+    font-size: 2em;
   }
 }
 
