@@ -11,7 +11,7 @@ const blog = await getCollection('blog')
       <h1>Posts</h1>
       <ul class="blog-posts-list">
         {
-          blog.map((post) => (
+          blog.reverse().map((post) => (
             <li>
               <Card
                 url={`/blog/${post.slug}`}
