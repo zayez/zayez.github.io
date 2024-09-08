@@ -1,5 +1,5 @@
 ---
-const {title, image, pubDate,  } = Astro.props
+const { title, image } = Astro.props
 ---
 <article class="article-container">
   <div class="article-head">
@@ -9,7 +9,6 @@ const {title, image, pubDate,  } = Astro.props
     <div>
     {image && <img width={720} height={360} src={image} alt="" />}
     </div>
-    <p><strong>Published </strong> {pubDate && <time>{pubDate}</time>}</p>
 
     <slot />
   </div>
