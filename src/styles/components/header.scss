@@ -10,6 +10,7 @@
   order: 0;
   top: 0;
   background-color: palette(blue, 90);
+  z-index: 10;
 
   @include mq($from: desktop) {
     flex-flow: row;
@@ -22,7 +23,6 @@
     width: 100%;
 
     @include mq($from: desktop) {
-      margin-right: -1em;
       flex-flow: row;
       width: auto;
     }
@@ -64,6 +64,7 @@ a:has(svg) {
 
   a {
     line-height: 0;
+    margin-left: 0.5em;
   }
   & svg {
     width: 1.5em;
