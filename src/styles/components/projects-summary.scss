@@ -17,7 +17,7 @@
 }
 
 .project-summary-item {
-  border-bottom: 1px solid palette(gray, 10);
+  border-bottom: 1px dashed palette(gray, 10);
   padding: 0.5em;
   display: flex;
   align-items: center;
