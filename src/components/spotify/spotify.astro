@@ -1,0 +1,24 @@
+---
+interface Props {
+  link: string;
+  height?: number;
+}
+
+const { link, height = 352 } = Astro.props;
+
+// Convert Spotify URL to embed URL
+// Input: https://open.spotify.com/track/xxx or spotify:track:xxx
+// Output: https://open.spotify.com/embed/track/xxx
+const embedUrl = link.includes('/embed/')
+  ? link
+  : link.replace('open.spotify.com/', 'open.spotify.com/embed/');
+---
+
+<iframe
+  src={embedUrl}
+  width="100%"
+  height={height}
+  frameborder="0"
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  loading="lazy"
+></iframe>
