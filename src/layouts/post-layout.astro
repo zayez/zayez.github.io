@@ -1,12 +1,19 @@
 ---
 import Article from "../components/article.astro";
-import Main from './main-layout.astro';
+import Comments from "../components/comments/comments";
+import Blog from './blog-layout.astro';
+var dateOpts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const {
-  frontmatter: { title,  pubDate, image, author },
+  frontmatter: { title, image, author, data: {pubDate}},
 } = Astro.props;
+
 ---
-<Main title="Zayez's blog" description="Blog">
+<Blog title="Zayez's blog" description="Blog">
+  <div class="vertical-rhythm">
   <Article title={title} author={author} image={image} pubDate={pubDate}>
+    <p><strong>Published </strong> <time datetime={pubDate}>{pubDate.toLocaleDateString("en-US", dateOpts)}</time></p>
     <slot />
-  </Article>
-</Main>
+  </Article></div>
+  <Comments client:idle />
+</Blog>
+

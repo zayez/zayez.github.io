@@ -1,0 +1,52 @@
+// Headings parameters [ h1: line-height: 2 × 26px, margin-top: 3 × 26px, margin-bottom: 1 × 26px ]
+
+@function fluid(
+  $min-size,
+  $max-size,
+  $min-breakpoint,
+  $max-breakpoint,
+  $unit: vw
+) {
+  $slope: math.div($max-size - $min-size, $max-breakpoint - $min-breakpoint);
+  $slope-to-unit: round($slope * 100, 2);
+  $intercept-rem: round(px-to-rem($min-size - $slope * $min-breakpoint), 2);
+  $min-size-rem: round(px-to-rem($min-size), 2);
+  $max-size-rem: round(px-to-rem($max-size), 2);
+  @return clamp(
+    #{$min-size-rem},
+    #{$slope-to-unit}#{$unit} + #{$intercept-rem},
+    #{$max-size-rem}
+  );
+}
+
+@each $heading, $properties in $headings {
+  .vertical-rhythm #{$heading} {
+    font-size: clamp(
+      ms(nth($properties, 1) - 1),
+      4vw + 1rem,
+      ms(nth($properties, 1) + 1)
+    );
+    @include line-height(nth($properties, 2));
+    @include margin-top(nth($properties, 2));
+    @include margin-bottom(nth($properties, 3));
+  }
+  #{$heading} {
+    font-size: clamp(
+      ms(nth($properties, 1) - 1),
+      4vw + 1rem,
+      ms(nth($properties, 1) + 1)
+    );
+    @include line-height(1.5);
+    @include margin-top(1);
+    @include margin-bottom(1);
+  }
+}
+
+p {
+  font-size: clamp(ms(0), 1vw + 1rem, ms(1));
+  @include line-height(1.3);
+}
+
+small {
+  font-size: clamp(ms(-1), 1vw + 1rem, ms(0));
+}

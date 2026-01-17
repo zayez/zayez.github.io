@@ -5,12 +5,15 @@
   margin: 0;
   padding: 0;
   flex-flow: column;
+  position: sticky;
+  margin: 0;
+  order: 0;
+  top: 0;
+  background-color: palette(blue, 90);
+  z-index: 10;
 
   @include mq($from: desktop) {
     flex-flow: row;
-  }
-  & > h1 {
-    margin: 0;
   }
 
   & > nav {
@@ -20,7 +23,6 @@
     width: 100%;
 
     @include mq($from: desktop) {
-      margin-right: -1em;
       flex-flow: row;
       width: auto;
     }
@@ -29,7 +31,6 @@
   & > nav > a {
     text-decoration: none;
     color: $white-color;
-    // border: 1px solid red;
     padding: 1em;
     width: 100%;
     text-align: center;
@@ -39,21 +40,34 @@
     }
 
     &:hover {
+      background: none;
+      color: palette(red, 50);
       text-decoration: overline;
     }
   }
+}
 
-  & h1 > a {
-    text-decoration: none;
-    color: white;
-    padding: 1em;
-
-    @include mq($from: desktop) {
-      margin: -1em;
+a:has(svg) {
+  &:hover {
+    path {
+      fill: palette(red, 50);
     }
+    background: none;
+  }
+}
 
-    &:hover {
-      text-decoration: overline;
-    }
+.brand {
+  margin: 0;
+  margin-top: 1em;
+  line-height: 0;
+  font-size: clamp(ms(1), 1vw + 1rem, ms(1));
+
+  a {
+    line-height: 0;
+    margin-left: 0.5em;
+  }
+  & svg {
+    width: 1.5em;
+    height: 100%;
   }
 }

@@ -5,19 +5,7 @@
 @import '../components/about.scss';
 @import '../components/projects-summary.scss';
 @import './blog.scss';
-
-body {
-  background-color: palette(blue, 90);
-  color: $white-color;
-  font-family: 'Lora', serif;
-  font-optical-sizing: auto;
-  font-size: 1em;
-  padding: 1em;
-
-  @include mq($from: desktop) {
-    font-size: 1.3em;
-  }
-}
+@import '../components/article.scss';
 
 .main-container {
   max-width: $main-container-width;
@@ -26,18 +14,11 @@ body {
 
 .index-container {
   display: flex;
+  margin-bottom: 12em;
   gap: 2em;
   flex-flow: column;
 
   & > * {
     width: 100%;
   }
-}
-
-hr {
-  border: 2px solid palette(gray, 60);
-}
-
-img {
-  max-width: 100%;
 }

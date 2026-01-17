@@ -1,21 +1,31 @@
 import { defineConfig } from 'astro/config'
-
 import mdx from '@astrojs/mdx'
+import react from '@astrojs/react'
+import expressiveCode from 'astro-expressive-code'
+import { shield } from '@kindspells/astro-shield'
 
 export default defineConfig({
-  site: 'https://zayez.github.io',
+  site: 'https://zayez.xyz',
+  vite: {
+    css: {
+      devSourcemap: true,
+    },
+  },
+  integrations: [
+    expressiveCode({
+      themes: ['dracula'],
 
-  integrations: [mdx()],
+      frames: {
+        showCopyToClipboardButton: true,
+      },
+    }),
+    mdx(),
+    react(),
+    shield({}),
+  ],
   base: '/',
   build: {
     assetsPrefix: '/',
     format: 'file',
   },
-
-  // output: 'static',
-  // outDir: './dist',
-  // build: {
-  //   assets: 'astro',
-  // },
-  // base: './dist',
 })

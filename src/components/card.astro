@@ -1,11 +1,15 @@
 ---
-const {url, image, title, footer, } = Astro.props
+const {url, image, title, date  } = Astro.props
+var dateOpts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 ---
 
-<div class="blog-card-list-item">
-  <h2>{title}</h2>
-  <p><a href={url}><img src={image} /></a></p>
-  <slot />
-  <p>{footer}</p>
+<div class="blog-card-list">
+  <h2><a href={url}>{title}</a></h2>
+  {image && (<p><a href={url}><img src={image} /></a></p>)}
+  <p>
+  <slot /></p>
+  <p>
+  <small><strong>Published </strong> <time datetime={date}>{date.toLocaleDateString("en-US", dateOpts)}</time></small>
+  </p>
 </div>
 

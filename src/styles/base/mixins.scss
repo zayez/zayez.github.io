@@ -1,21 +1,2 @@
-@use 'sass:math';
-
-@function get-color($palette, $param) {
-  @return map-get(map-get($palettes, $palette), $param);
-}
-
-@function palette($palette, $lightness: 50, $saturation: null) {
-  @if ($saturation) {
-    @return hsl(
-      get-color($palette, hue),
-      percentage(math.div($saturation, 100)),
-      percentage(math.div((100 - $lightness), 100))
-    );
-  } @else {
-    @return hsl(
-      get-color($palette, hue),
-      percentage(get-color($palette, saturation)),
-      percentage(math.div((100 - $lightness), 100))
-    );
-  }
-}
+@import '../mixins/color-utils.scss';
+@import '../mixins//vertical-rhythm.scss';

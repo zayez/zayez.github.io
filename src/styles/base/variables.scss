@@ -1,3 +1,4 @@
+@use 'sass:math';
 // Breakponts
 $mq-breakpoints: (
   mobile: 320px,
@@ -47,3 +48,61 @@ $palettes: (
     saturation: 0.1,
   ),
 );
+
+// Core Variables - Large Screens
+$base-font-size: 112.5 !default; // 18px in % of 16px
+$ratio: 1.5 !default;
+$line-height: 1.6 !default;
+$font-family-body: 'Lora', serif !default;
+$font-family-heading: 'Playfair Display', serif !default;
+
+// Core Variables - Mobile Screens
+$mobile-base-font-size: 100 !default;
+$mobile-line-height: 1.55 !default;
+
+// Headings (font-size from scale, line-height, margin-top, margin-bottom)
+$headings: (
+  h1: (
+    2,
+    2.5,
+    3,
+    1,
+  ),
+  h2: (
+    1,
+    2,
+    2,
+    1,
+  ),
+  h3: (
+    0,
+    1.5,
+    1,
+    0,
+  ),
+  h4: (
+    0,
+    1,
+    1,
+    0,
+  ),
+  h5: (
+    0,
+    1,
+    1,
+    0,
+  ),
+  h6: (
+    0,
+    1,
+    1,
+    0,
+  ),
+);
+
+// Computed variables
+$base: 16 * (math.div($base-font-size, 100));
+// $mobile-base: 16 * ($mobile-base-font-size / 100);
+$leading: $base * $line-height;
+
+$font-base: clamp(ms(1), 0.46vw + 0.9rem, 5rem);
