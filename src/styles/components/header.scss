@@ -32,7 +32,8 @@
 
   & > nav > a {
     text-decoration: none;
-    color: $white-color;
+
+    color: palette(blue, 40);
     padding: 1em;
     width: 100%;
     text-align: center;

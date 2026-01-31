@@ -16,3 +16,16 @@
 .blog-container {
   min-height: 75vh;
 }
+
+.post-card {
+  padding-block: 0;
+}
+
+.published-at {
+  color: palette(gray, 40);
+  padding-block: 0;
+}
+
+.giscus-container {
+  margin-bottom: 5rem;
+}
