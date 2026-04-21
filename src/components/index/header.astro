@@ -1,19 +1,35 @@
 ---
-// import { Image } from 'astro:assets';
+interface Props {
+  currentPage?: 'home' | 'blog' | 'post'
+}
 
-// import logoSvg from '../../assets/zayez-logo.svg';
-// const logo = {
-//   src: logoSvg,
-//   alt: "Zayez's logo"
-// }
-import svg from '../../assets/zayez-logo.svg?raw';
+const { currentPage = 'home' } = Astro.props
+
+const issueDate = new Date()
+const issueMonth = issueDate.toLocaleString('en-US', { month: 'long' })
+const issueYear = issueDate.getFullYear()
+const issueNumber = 2
 ---
-<header class="header">
-  <div class="header-wrapper">
-  <h1 class="brand"><a href="/" aria-label="Home"><Fragment set:html={svg} /></a></h1>
-  <nav class="header-nav">
-    <a aria-label="Home page" href="/">Home</a>
-    <a aria-label="My blog" href="/blog">Blog</a>
-  </nav>
+
+<nav class="o3-nav">
+  <div class="o3-brand">
+    <a href="/" aria-label="Home">zayez<span class="ast">.</span></a>
   </div>
-</header>
+  <div class="o3-nav-links">
+    <a href="/" class={currentPage === 'home' ? 'is-on' : ''}>Home</a>
+    <a
+      href="/blog"
+      class={currentPage === 'blog' || currentPage === 'post' ? 'is-on' : ''}
+      >Blog</a
+    >
+    <a
+      href="https://bsky.app/profile/zayez.bsky.social"
+      target="_blank"
+      rel="noreferrer">Contact</a
+    >
+  </div>
+  <div class="o3-issue">
+    Issue <b>№ {String(issueNumber).padStart(3, '0')}</b> / {issueMonth}
+    {issueYear}
+  </div>
+</nav>

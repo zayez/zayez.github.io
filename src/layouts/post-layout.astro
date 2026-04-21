@@ -1,19 +1,139 @@
 ---
-import Article from "../components/article.astro";
-import Comments from "../components/comments/comments";
-import Blog from './blog-layout.astro';
-var dateOpts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-const {
-  frontmatter: { title, image, author, data: {pubDate}},
-} = Astro.props;
+import BaseHead from '@components/base-head.astro'
+import Header from '@components/index/header.astro'
+import MegaFooter from '@components/index/footer.astro'
+import Comments from '@components/comments/comments'
+import '../styles/pages/zine.scss'
 
+import type { MarkdownHeading } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  entry: CollectionEntry<'blog'>
+  headings: MarkdownHeading[]
+  essayNumber: number
+  totalEssays: number
+}
+
+const { entry, headings, essayNumber, totalEssays } = Astro.props
+const { title, description, pubDate, tags } = entry.data
+
+const dateOpts: Intl.DateTimeFormatOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}
+const dateLabel = pubDate.toLocaleDateString('en-US', dateOpts)
+const dateIso = pubDate.toISOString()
+
+const words = entry.body.split(/\s+/).filter(Boolean).length
+const readTime = `${Math.max(1, Math.round(words / 200))} min read`
+
+const primaryTag = tags?.[0] ?? 'essay'
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3)
+
+const postUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://zayez.xyz').toString()
+const shareText = `"${title}" — ${postUrl}`
+const blueskyShareUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(shareText)}`
 ---
-<Blog title="Zayez's blog" description="Blog">
-  <div class="vertical-rhythm">
-  <Article title={title} author={author} image={image} pubDate={pubDate}>
-    <p class="published-at"><strong>Published </strong> <time datetime={pubDate}>{pubDate.toLocaleDateString("en-US", dateOpts)}</time></p>
-    <slot />
-  </Article></div>
-  <Comments client:idle />
-</Blog>
 
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <div class="o3">
+      <Header currentPage="post" />
+
+      <header class="o3-post-mast">
+        <div class="o3-post-top">
+          <a class="back" href="/blog">← Back to posts</a>
+          <span><span class="tag">{primaryTag}</span></span>
+          <span>Essay № {String(essayNumber).padStart(2, '0')} / {String(totalEssays).padStart(2, '0')}</span>
+        </div>
+        <h1>{title}</h1>
+        {description && <p class="deck">&ldquo;{description}&rdquo;</p>}
+        <div class="dekline">
+          <span>By Enio E. Zanatta</span>
+          <span>
+            Published · <time datetime={dateIso}>{dateLabel}</time>
+          </span>
+          <span>{readTime}</span>
+        </div>
+      </header>
+
+      <section class="o3-post-body">
+        <aside class="o3-post-side">
+          <h5>§ Contents</h5>
+          {
+            tocHeadings.length > 0 ? (
+              <ol>
+                {tocHeadings.map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div>No sections</div>
+            )
+          }
+          <h5 style="margin-top: 20px">§ Filed under</h5>
+          <div class="hash-accent">#{primaryTag}</div>
+          {
+            tags?.slice(1).map((t) => (
+              <div class="hash">#{t}</div>
+            ))
+          }
+        </aside>
+
+        <article class="o3-post-content">
+          <slot />
+        </article>
+
+        <aside class="o3-post-side">
+          <h5>§ Share</h5>
+          <div>
+            <button class="o3-share-copy" type="button">Copy link</button>
+          </div>
+          <div>
+            <a href={blueskyShareUrl} target="_blank" rel="noreferrer"
+              >Post on Bluesky</a
+            >
+          </div>
+          <h5 style="margin-top: 20px">§ Read next</h5>
+          <div><a href="/blog">All posts →</a></div>
+        </aside>
+      </section>
+
+      <script>
+        document
+          .querySelectorAll<HTMLButtonElement>('.o3-share-copy')
+          .forEach((btn) => {
+            btn.addEventListener('click', async () => {
+              const original = btn.textContent ?? 'Copy link'
+              try {
+                await navigator.clipboard.writeText(location.href)
+                btn.textContent = 'Copied!'
+                btn.classList.add('is-copied')
+              } catch {
+                btn.textContent = 'Copy failed'
+              }
+              setTimeout(() => {
+                btn.textContent = original
+                btn.classList.remove('is-copied')
+              }, 1600)
+            })
+          })
+      </script>
+
+      <div class="giscus-container">
+        <Comments client:only="react" />
+      </div>
+
+      <MegaFooter label="§ end" variant="post" />
+    </div>
+  </body>
+</html>

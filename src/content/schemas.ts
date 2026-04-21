@@ -17,6 +17,8 @@ export const projectSchema = z.object({
     .string()
     .transform((str) => new Date(str))
     .optional(),
+  year: z.string().optional(),
+  tags: z.array(z.string()).optional(),
   imageUrl: z.string(),
   githubUrl: z.string(),
   projectUrl: z.string(),

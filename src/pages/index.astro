@@ -1,13 +1,146 @@
 ---
-import About from '../components/index/about.astro'
-import ProjectsOverview from '../components/index/projects-summary.astro'
 import Main from '../layouts/main-layout.astro'
+import Header from '@components/index/header.astro'
+import MegaFooter from '@components/index/footer.astro'
+import { getCollection } from 'astro:content'
+
+const projects = await getCollection('projects')
+const sortedProjects = projects.sort((a, b) => {
+  const ya = Number(a.data.year ?? 0)
+  const yb = Number(b.data.year ?? 0)
+  return yb - ya
+})
+
+const blog = await getCollection('blog', (post) => post.data.draft !== true)
+const sortedPosts = blog.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+)
+const latestPosts = sortedPosts.slice(0, 2)
+
+const dateOpts: Intl.DateTimeFormatOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}
 ---
 
-<Main title="Zayez's website" description="Home page">
-  <div class="index-container">
-    <About />
-    <hr/>
-    <ProjectsOverview />
+<Main
+  title="Zayez — Enio E. Zanatta"
+  description="Personal zine / software · design · space — Enio E. Zanatta, front-end engineer in Brazil"
+>
+  <Header currentPage="home" />
+
+  <header class="o3-mast">
+    <div class="o3-tagline">
+      <span>Personal zine / software · design · space</span>
+      <span class="pink">● Taking new work — 2026</span>
+      <span>ver 2.0 · Porto Alegre, BR</span>
+    </div>
+    <h1 class="o3-title">
+      ENIO<br />
+      <span class="outline">ZANATTA</span>
+      <span class="ink-accent"> builds</span><br />
+      INTER<span class="head">FACES</span>
+    </h1>
+  </header>
+
+  <section class="o3-band">
+    <div>
+      <div class="col-label">Who</div>
+      <p class="o3-quote">
+        &ldquo;A frontend engineer <span class="dash">—</span> React, TypeScript,
+        and UI craft. Based in Brazil, shipping quiet software with loud typography.&rdquo;
+      </p>
+    </div>
+    <div>
+      <div class="col-label">About</div>
+      <p class="o3-about">
+        <strong>Software Engineer</strong> with UI/UX design skills based in
+        Brazil. Currently working as a Front-end developer with React and
+        TypeScript/JavaScript, building web applications. Open to
+        collaborations, freelance, and long-form product work.
+      </p>
+    </div>
+    <div>
+      <div class="col-label">Stats</div>
+      <div class="o3-stats">
+        <span class="big">{sortedProjects.length}</span>
+        <b>projects</b> shipped in the open<br />
+        <span class="big">{sortedPosts.length}</span>
+        <b>essays</b> on making software<br />
+      </div>
+    </div>
+  </section>
+
+  <div class="o3-section-mark">
+    <h2><span class="outline">Selected</span> Work</h2>
+    <div class="num">
+      § 01 · <b>{sortedProjects.length}</b> projects · ordered by recency
+    </div>
   </div>
+
+  <section class="o3-projects">
+    {
+      sortedProjects.map((p, i) => (
+        <a
+          href={p.data.projectUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="o3-project"
+        >
+          {i === 0 && <span class="o3-rotate">new</span>}
+          <div class="o3-project-no">
+            <span>Nº {String(i + 1).padStart(2, '0')}</span>
+            {p.data.year && <span class="year">{p.data.year}</span>}
+          </div>
+          <h3 class="o3-project-title">{p.data.name}</h3>
+          <p class="o3-project-blurb">{p.data.description}</p>
+          {p.data.tags && (
+            <div class="o3-project-tags">
+              {p.data.tags.map((t) => (
+                <span>{t}</span>
+              ))}
+            </div>
+          )}
+          <span class="o3-project-hit">Visit site —</span>
+        </a>
+      ))
+    }
+  </section>
+
+  <div class="o3-section-mark">
+    <h2>Writing <span class="outline">Desk</span></h2>
+    <div class="num">
+      § 02 · latest <b>{latestPosts.length}</b> notes
+    </div>
+  </div>
+
+  <section class="o3-write">
+    <div class="o3-write-grid">
+      {
+        latestPosts.map((p) => {
+          const words = p.body.split(/\s+/).filter(Boolean).length
+          const readTime = `${Math.max(1, Math.round(words / 200))} min`
+          const primaryTag = p.data.tags?.[0] ?? 'essay'
+          return (
+            <a href={`/blog/${p.slug}`} class="o3-post-card">
+              <div class="o3-post-card-meta">
+                <span class="tag">{primaryTag}</span>
+                <span>
+                  {p.data.pubDate.toLocaleDateString('en-US', dateOpts)}
+                </span>
+                <span>{readTime}</span>
+              </div>
+              <h3 class="o3-post-t">{p.data.title}</h3>
+              <p class="o3-post-ex">{p.data.description}</p>
+              <span class="more">Read essay →</span>
+            </a>
+          )
+        })
+      }
+    </div>
+  </section>
+
+  <MegaFooter label="§ 03 — Contact the editor" variant="home" />
 </Main>

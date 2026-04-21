@@ -1,28 +1,37 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
-import BlogLayout from "../../layouts/post-layout.astro";
+import { getCollection, type CollectionEntry } from 'astro:content'
+import PostLayout from '../../layouts/post-layout.astro'
+
 interface Props {
-  entry: CollectionEntry<"blog">;
-}
-export async function getStaticPaths() {
-  const blogs = await getCollection("blog", (blog) => blog.data.draft !== true);
-  return blogs.map((blog) => ({
-    params: { slug: blog.slug },
-    props: { entry: blog },
-  }));
+  entry: CollectionEntry<'blog'>
+  essayNumber: number
+  totalEssays: number
 }
 
-const { entry } = Astro.props;
-const { Content,  } = await entry.render();
-const year = entry.slug?.split('-')[0]
+export async function getStaticPaths() {
+  const blogs = await getCollection('blog', (blog) => blog.data.draft !== true)
+  const sorted = blogs.sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  )
+  return sorted.map((entry, i) => ({
+    params: { slug: entry.slug },
+    props: {
+      entry,
+      essayNumber: sorted.length - i,
+      totalEssays: sorted.length,
+    },
+  }))
+}
+
+const { entry, essayNumber, totalEssays } = Astro.props
+const { Content, headings } = await entry.render()
 ---
 
-<BlogLayout
-  frontmatter={{
-    ...entry,
-    url: `/blog/${year}/${entry.slug}`,
-    title: entry.data.title,
-  }}
+<PostLayout
+  entry={entry}
+  headings={headings}
+  essayNumber={essayNumber}
+  totalEssays={totalEssays}
 >
   <Content />
-</BlogLayout>
+</PostLayout>

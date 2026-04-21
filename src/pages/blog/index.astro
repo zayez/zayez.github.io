@@ -1,30 +1,73 @@
 ---
-import BlogLayout from "../../layouts/blog-layout.astro";
-import Card from '../../components/card.astro'
-import {getCollection} from 'astro:content'
+import BlogLayout from '../../layouts/blog-layout.astro'
+import Header from '@components/index/header.astro'
+import MegaFooter from '@components/index/footer.astro'
+import { getCollection } from 'astro:content'
 
-const blog = await getCollection('blog')
+const blog = await getCollection('blog', (post) => post.data.draft !== true)
+const sorted = blog.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+)
+
+const dateOpts: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}
+
+const updatedDate = sorted[0]?.data.pubDate
+const updatedLabel = updatedDate
+  ? `${updatedDate.toLocaleString('en-US', { month: 'long' })} ${updatedDate.getFullYear()}`
+  : ''
 ---
-<BlogLayout title="Zayez's Blog">
-  <section class="">
-    <div class="blog-container">
-      <h1>Posts</h1>
-      <ul class="blog-posts-list">
-        {
-          blog.reverse().map((post) => (
-            <li>
-              <Card
-                url={`/blog/${post.slug}`}
-                image={post.data.image}
-                title={post.data.title}
-                date={post.data.pubDate}
-              >
-                {post.data.description}
-              </Card>
-            </li>
-          ))
-        }
-      </ul>
+
+<BlogLayout
+  title="Zayez — Posts"
+  description="Essays, notes, and solved problems — Enio E. Zanatta's blog"
+>
+  <Header currentPage="blog" />
+
+  <header class="o3-blog-mast">
+    <h1>P<span class="o">O</span>STS<span class="p">.</span></h1>
+    <div class="o3-blog-sub">
+      <span>/ essays · notes · solved problems</span>
+      {updatedLabel && <span>Updated {updatedLabel}</span>}
+      <span class="count">
+        Total archive · <b>{String(sorted.length).padStart(2, '0')}</b>
+      </span>
     </div>
-  </section>
+  </header>
+
+  <ul class="o3-bloglist">
+    {
+      sorted.map((post, i) => {
+        const words = post.body.split(/\s+/).filter(Boolean).length
+        const readTime = `${Math.max(1, Math.round(words / 200))} min`
+        const primaryTag = post.data.tags?.[0] ?? 'essay'
+        return (
+          <li>
+            <a href={`/blog/${post.slug}`} class="o3-blogitem">
+              <div class="n">
+                {String(sorted.length - i).padStart(2, '0')}
+              </div>
+              <div>
+                <h3 class="o3-blog-t">{post.data.title}</h3>
+                <p class="o3-blog-e">{post.data.description}</p>
+              </div>
+              <div class="meta">
+                <span class="tag">{primaryTag}</span>
+                <br />
+                {post.data.pubDate.toLocaleDateString('en-US', dateOpts)}
+                <br />
+                {readTime}
+              </div>
+              <div class="arr">→</div>
+            </a>
+          </li>
+        )
+      })
+    }
+  </ul>
+
+  <MegaFooter label="§ end of feed" variant="blog" />
 </BlogLayout>

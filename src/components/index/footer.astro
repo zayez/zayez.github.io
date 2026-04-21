@@ -1,7 +1,95 @@
 ---
-const today = new Date();
+interface Props {
+  label?: string
+  variant?: 'home' | 'blog' | 'post'
+}
+
+const { label = '§ end', variant = 'home' } = Astro.props
+const year = new Date().getFullYear()
 ---
-<footer class="footer">
-    <p>Built using Astro. Hosted by Github Pages.</p>
-    <small> Copyright &copy; {today.getFullYear()} &mdash; Enio E. Zanatta </small>
-</footer>
+
+<section class="o3-mega">
+  <div class="label">{label}</div>
+  <slot name="heading">
+    {
+      variant === 'home' && (
+        <h3>
+          SAY <span class="out">HI</span>
+          <br />
+          <a
+            href="https://bsky.app/profile/zayez.bsky.social"
+            target="_blank"
+            rel="noreferrer">@zayez</a
+          >
+        </h3>
+      )
+    }
+    {
+      variant === 'blog' && (
+        <h3>
+          <span class="out">MORE</span>
+          <br />
+          <a href="/">SOON →</a>
+        </h3>
+      )
+    }
+    {
+      variant === 'post' && (
+        <h3>
+          NEXT
+          <br />
+          <a href="/blog">ESSAY →</a>
+        </h3>
+      )
+    }
+  </slot>
+  <div class="o3-mega-foot">
+    <div class="links">
+      <slot name="links">
+        {
+          variant === 'home' && (
+            <>
+              <a
+                href="https://github.com/zayez"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub ↗
+              </a>
+              <a href="/blog">Blog ↗</a>
+              <a
+                href="https://bsky.app/profile/zayez.bsky.social"
+                target="_blank"
+                rel="noreferrer">Bluesky ↗</a
+              >
+              <a
+                href="https://instagram.com/zayez_"
+                target="_blank"
+                rel="noreferrer">Instagram ↗</a
+              >
+            </>
+          )
+        }
+        {
+          variant === 'blog' && (
+            <>
+              <a href="/">Back to home</a>
+              <a href="/rss.xml">Subscribe /rss.xml</a>
+            </>
+          )
+        }
+        {
+          variant === 'post' && (
+            <>
+              <a href="/">Home</a>
+              <a href="/blog">All posts</a>
+            </>
+          )
+        }
+      </slot>
+    </div>
+    <div>
+      © {year} · Zayez · Built with Astro · Hosted on GH Pages
+    </div>
+  </div>
+</section>
