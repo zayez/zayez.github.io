@@ -166,14 +166,14 @@
 
   .col-label {
     font-family: var(--f-mono);
-    font-size: 10px;
+    font-size: 14px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 
     &::before {
       content: '■';
@@ -211,8 +211,8 @@
 
 .o3-about {
   font-family: var(--f-sans);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.6;
   color: var(--ink-dim);
   margin: 0;
 
@@ -228,7 +228,7 @@
 
 .o3-stats {
   font-family: var(--f-mono);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--ink-dim);
   line-height: 1.9;
 
@@ -359,8 +359,8 @@
 
 .o3-project-blurb {
   font-family: var(--f-serif);
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 1.55;
   color: var(--ink-dim);
   margin: 0 0 22px;
 }
@@ -489,7 +489,7 @@
 
 .o3-post-ex {
   font-family: var(--f-serif);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.55;
   color: var(--ink-dim);
   margin: 0 0 14px;
