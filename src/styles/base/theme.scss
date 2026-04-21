@@ -10,11 +10,13 @@
   --rule: rgba(102, 138, 204, 0.22);
   --rule-strong: rgba(102, 138, 204, 0.5);
 
-  --f-sans: 'Inter Tight', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica,
-    Arial, sans-serif;
+  --f-sans:
+    'Inter Tight', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
   --f-serif: 'Fraunces', 'Times New Roman', 'Times', serif;
-  --f-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular,
-    Menlo, monospace;
+  --f-mono:
+    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo,
+    monospace;
   --f-display: 'Space Grotesk', 'Archivo', 'Inter Tight', sans-serif;
 }
 

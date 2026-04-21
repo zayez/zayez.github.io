@@ -5,11 +5,16 @@
   color: var(--ink);
   font-family: var(--f-sans);
   min-height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  // border-left: 2px solid var(--ink);
+  // border-right: 2px solid var(--ink);
   position: relative;
   overflow-x: hidden;
 
   &::before {
     content: '';
+    position: absolute;
     position: fixed;
     inset: 0;
     background: repeating-linear-gradient(
