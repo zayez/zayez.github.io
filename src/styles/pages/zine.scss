@@ -7,15 +7,17 @@
   min-height: 100vh;
   max-width: 1600px;
   margin: 0 auto;
-  // border-left: 2px solid var(--ink);
-  // border-right: 2px solid var(--ink);
   position: relative;
   overflow-x: hidden;
+
+  @media (min-width: 1601px) {
+    border-left: 2px solid var(--ink);
+    border-right: 2px solid var(--ink);
+  }
 
   &::before {
     content: '';
     position: absolute;
-    position: fixed;
     inset: 0;
     background: repeating-linear-gradient(
       0deg,
@@ -162,7 +164,10 @@
 
   & > div {
     padding: 36px;
-    border-right: 2px solid var(--ink);
+
+    @media (min-width: 900px) {
+      border-right: 2px solid var(--ink);
+    }
 
     &:last-child {
       border-right: none;
@@ -260,9 +265,14 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 40px;
+  gap: 40px 24px;
   flex-wrap: wrap;
   border-bottom: 1px dashed var(--rule);
+
+  @media (max-width: 640px) {
+    padding: 40px 20px 20px;
+    gap: 20px 16px;
+  }
 
   h2 {
     font-family: var(--f-display);
@@ -286,7 +296,6 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-dim);
-    white-space: nowrap;
 
     b {
       color: var(--accent);
@@ -305,7 +314,7 @@
 .o3-project {
   grid-column: span 4;
   padding: 28px 24px 32px;
-  border-right: 2px solid var(--ink);
+
   border-top: 2px solid var(--ink);
   margin-top: -2px;
   cursor: pointer;
@@ -331,7 +340,10 @@
 
   @media (max-width: 900px) {
     grid-column: span 12;
-    border-right: none;
+  }
+
+  @media (min-width: 900px) {
+    border-right: 2px solid var(--ink);
   }
 }
 
@@ -439,7 +451,6 @@
 
 .o3-post-card {
   padding: 28px 28px 32px;
-  border-right: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
   cursor: pointer;
   transition: background 0.16s;
@@ -458,8 +469,8 @@
     color: var(--accent);
   }
 
-  @media (max-width: 900px) {
-    border-right: none;
+  @media (min-width: 900px) {
+    border-right: 2px solid var(--ink);
   }
 }
 
@@ -817,22 +828,25 @@
 .o3-post-body {
   padding: 96px 48px 112px;
   display: grid;
-  grid-template-columns: 200px 1fr 200px;
+  grid-template-columns: 200px minmax(0, 1fr) 200px;
   gap: 64px;
   border-bottom: 2px solid var(--ink);
 
   @media (max-width: 1000px) {
-    grid-template-columns: 1fr;
-    gap: 48px;
+    display: block;
 
     .o3-post-side {
       position: static;
+      margin-bottom: 48px;
+    }
+
+    .o3-post-content {
+      margin-bottom: 48px;
     }
   }
 
   @media (max-width: 640px) {
     padding: 56px 20px 72px;
-    gap: 40px;
   }
 }
 
@@ -846,6 +860,7 @@
   position: sticky;
   top: 100px;
   align-self: start;
+  min-width: 0;
 
   h5 {
     color: var(--accent);
@@ -917,6 +932,8 @@
   color: var(--ink);
   max-width: 680px;
   margin: 0 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
   counter-reset: section;
 
   .lede,

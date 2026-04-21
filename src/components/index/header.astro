@@ -4,11 +4,6 @@ interface Props {
 }
 
 const { currentPage = 'home' } = Astro.props
-
-const issueDate = new Date()
-const issueMonth = issueDate.toLocaleString('en-US', { month: 'long' })
-const issueYear = issueDate.getFullYear()
-const issueNumber = 2
 ---
 
 <nav class="o3-nav">
@@ -27,9 +22,5 @@ const issueNumber = 2
       target="_blank"
       rel="noreferrer">Contact</a
     >
-  </div>
-  <div class="o3-issue">
-    Issue <b>№ {String(issueNumber).padStart(3, '0')}</b> / {issueMonth}
-    {issueYear}
   </div>
 </nav>
