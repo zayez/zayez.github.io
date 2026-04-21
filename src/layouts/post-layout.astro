@@ -47,7 +47,8 @@ const blueskyShareUrl = `https://bsky.app/intent/compose?text=${encodeURICompone
     <div class="o3">
       <Header currentPage="post" />
 
-      <header class="o3-post-mast">
+      <main>
+        <header class="o3-post-mast">
         <div class="o3-post-top">
           <a class="back" href="/blog">← Back to posts</a>
           <span><span class="tag">{primaryTag}</span></span>
@@ -129,9 +130,10 @@ const blueskyShareUrl = `https://bsky.app/intent/compose?text=${encodeURICompone
           })
       </script>
 
-      <div class="giscus-container">
-        <Comments client:only="react" />
-      </div>
+        <div class="giscus-container">
+          <Comments client:only="react" />
+        </div>
+      </main>
 
       <MegaFooter label="§ end" variant="post" />
     </div>

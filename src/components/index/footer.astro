@@ -8,7 +8,7 @@ const { label = '§ end', variant = 'home' } = Astro.props
 const year = new Date().getFullYear()
 ---
 
-<section class="o3-mega">
+<footer class="o3-mega">
   <div class="label">{label}</div>
   <slot name="heading">
     {
@@ -92,4 +92,4 @@ const year = new Date().getFullYear()
       © {year} · Zayez · Built with Astro · Hosted on GH Pages
     </div>
   </div>
-</section>
+</footer>
