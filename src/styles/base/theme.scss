@@ -11,13 +11,15 @@
   --rule-strong: rgba(102, 138, 204, 0.5);
 
   --f-sans:
-    'Inter Tight', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial,
-    sans-serif;
-  --f-serif: 'Fraunces', 'Times New Roman', 'Times', serif;
+    'Inter Tight Variable', 'Inter Tight', 'Neue Haas Grotesk',
+    'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --f-serif: 'Fraunces Variable', 'Fraunces', 'Times New Roman', 'Times', serif;
   --f-mono:
-    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo,
-    monospace;
-  --f-display: 'Space Grotesk', 'Archivo', 'Inter Tight', sans-serif;
+    'JetBrains Mono Variable', 'JetBrains Mono', 'IBM Plex Mono', ui-monospace,
+    SFMono-Regular, Menlo, monospace;
+  --f-display:
+    'Space Grotesk Variable', 'Space Grotesk', 'Archivo', 'Inter Tight Variable',
+    'Inter Tight', sans-serif;
 }
 
 *,
