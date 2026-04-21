@@ -1,7 +1,7 @@
 ---
 interface Props {
   label?: string
-  variant?: 'home' | 'blog' | 'post'
+  variant?: 'home' | 'projects' | 'blog' | 'post'
 }
 
 const { label = '§ end', variant = 'home' } = Astro.props
@@ -30,6 +30,19 @@ const year = new Date().getFullYear()
           <span class="out">MORE</span>
           <br />
           <a href="/">SOON →</a>
+        </h3>
+      )
+    }
+    {
+      variant === 'projects' && (
+        <h3>
+          <span class="out">GOT</span> A
+          <br />
+          <a
+            href="https://bsky.app/profile/zayez.bsky.social"
+            target="_blank"
+            rel="noreferrer">PROJECT? →</a
+          >
         </h3>
       )
     }
@@ -83,6 +96,20 @@ const year = new Date().getFullYear()
             <>
               <a href="/">Home</a>
               <a href="/blog">All posts</a>
+            </>
+          )
+        }
+        {
+          variant === 'projects' && (
+            <>
+              <a href="/">Home</a>
+              <a href="/blog">Writing</a>
+              <a
+                href="https://github.com/zayez"
+                target="_blank"
+                rel="noreferrer">
+                GitHub ↗
+              </a>
             </>
           )
         }

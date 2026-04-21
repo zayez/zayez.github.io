@@ -698,6 +698,23 @@
       padding: 1px 6px;
       display: inline-block;
       margin-bottom: 4px;
+
+      &.status-live {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      &.status-wip {
+        color: var(--heading);
+        border-color: var(--heading);
+      }
+      &.status-archived {
+        color: var(--ink-dim);
+        border-color: var(--rule);
+      }
+    }
+
+    .source {
+      color: var(--ink);
     }
   }
 
@@ -1095,4 +1112,77 @@
   max-width: 680px;
   margin: 0 auto;
   padding: 40px 40px 80px;
+}
+
+/* ─── Projects filter bar ────────────────────────────────── */
+.o3-filter {
+  display: flex;
+  gap: 10px;
+  padding: 20px 40px;
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  align-items: center;
+  color: var(--ink-dim);
+  flex-wrap: wrap;
+
+  .label {
+    color: var(--accent);
+  }
+
+  .count {
+    margin-left: auto;
+  }
+
+  button {
+    background: transparent;
+    color: var(--ink-dim);
+    border: 1px solid var(--rule);
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition:
+      color 0.12s,
+      background 0.12s,
+      border-color 0.12s;
+
+    &:hover {
+      color: var(--ink);
+      border-color: var(--heading);
+    }
+
+    &.is-on {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+  }
+
+  @media (max-width: 640px) {
+    padding: 16px 20px;
+    gap: 8px;
+  }
+}
+
+/* Stack chips inside project rows */
+.o3-stack {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+
+  span {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--heading);
+    border: 1px solid var(--heading);
+    padding: 2px 6px;
+  }
 }

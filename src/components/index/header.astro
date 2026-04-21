@@ -1,6 +1,6 @@
 ---
 interface Props {
-  currentPage?: 'home' | 'blog' | 'post'
+  currentPage?: 'home' | 'projects' | 'blog' | 'post'
 }
 
 const { currentPage = 'home' } = Astro.props
@@ -12,6 +12,9 @@ const { currentPage = 'home' } = Astro.props
   </div>
   <div class="o3-nav-links">
     <a href="/" class={currentPage === 'home' ? 'is-on' : ''}>Home</a>
+    <a href="/projects" class={currentPage === 'projects' ? 'is-on' : ''}
+      >Projects</a
+    >
     <a
       href="/blog"
       class={currentPage === 'blog' || currentPage === 'post' ? 'is-on' : ''}
