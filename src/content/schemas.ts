@@ -23,14 +23,16 @@ export const projectSchema = z.object({
   status: z.enum(['live', 'wip', 'archived']).optional(),
   role: z.string().optional(),
   long: z.string().optional(),
-  imageUrl: z.string(),
+  imageUrl: z.string().optional(),
   githubUrl: z.string(),
   projectUrl: z.string(),
   description: z.string(),
-  images: z.object({
-    small: z.string(),
-    medium: z.string(),
-    big: z.string(),
-    large: z.string(),
-  }),
+  images: z
+    .object({
+      small: z.string(),
+      medium: z.string(),
+      big: z.string(),
+      large: z.string(),
+    })
+    .optional(),
 })
