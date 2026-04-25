@@ -315,16 +315,13 @@
   grid-column: span 4;
   padding: 28px 24px 32px;
 
-  border-top: 2px solid var(--ink);
+  border: 2px solid var(--ink);
   margin-top: -2px;
+  margin-left: -2px;
   cursor: pointer;
   transition: background 0.16s;
   position: relative;
   display: block;
-
-  &:nth-child(3n) {
-    border-right: none;
-  }
 
   &:hover {
     background: var(--bg-2);
@@ -340,10 +337,6 @@
 
   @media (max-width: 900px) {
     grid-column: span 12;
-  }
-
-  @media (min-width: 900px) {
-    border-right: 2px solid var(--ink);
   }
 }
 
@@ -451,15 +444,13 @@
 
 .o3-post-card {
   padding: 28px 28px 32px;
-  border-bottom: 2px solid var(--ink);
+  border: 2px solid var(--ink);
+  margin-top: -2px;
+  margin-left: -2px;
   cursor: pointer;
   transition: background 0.16s;
   position: relative;
   display: block;
-
-  &:nth-child(2n) {
-    border-right: none;
-  }
 
   &:hover {
     background: var(--bg-2);
@@ -467,10 +458,6 @@
 
   &:hover .o3-post-t {
     color: var(--accent);
-  }
-
-  @media (min-width: 900px) {
-    border-right: 2px solid var(--ink);
   }
 }
 
